@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>Judul</th>
+        <th>Rating</th>
+        <th>Tanggal Rilis</th>
+        <th>Ulasan</th>
+        <th>Sudah/Belum Ditonton</th>
+    </tr>
+    {% for film in watchlist %}
+    <tr>
+        <th>{{film.title}}</th>
+        <th>{{film.rating}}</th>
+        <th>{{film.release_date}}</th>
+        <th>{{film.review}}</th>
+        {% if film.watched == True %}
+            <th>Sudah</th>
+        {% else %}
+            <th>Belum</th>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+    {% if banyak_film_ditonton >= 5 %}
+        <p>Selamat, kamu sudah banyak menonton!</p>
+    {% else %}
+        <th>Wah, kamu masih sedikit menonton!</th>
+    {% endif %}
+{% endblock content %}
