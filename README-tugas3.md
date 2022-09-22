@@ -20,13 +20,15 @@ PBP F
 ## Perbedaan JSON, HTML, dan XML
 
 ### JSON
-
 JSON (JavaScript Object Notation) adalah sebuah format untuk menyimpan dan melakukan pertukaran data. Sesuai dengan namanya, data dalam format JSON akan disimpan dalam bentuk objek JavaScript. Data-data ini disimpan dalam bentuk pasangan _key and value_ sehingga kita bisa memanggil nilai atribut suatu objek menggunakan _key_ yang sesuai. _Key_ pada JSON sendiri bentuknya adalah sebuah string, dan _value_-nya bisa bermacam-macam, seperti integer, string, bahkan object. Setiap _key_ dan _value_ dipisahkan oleh tanda titik dua (:) dan antara _key_ dan _value_ sebelum dan sesudahnya dipisah oleh tanda koma (,).
 
 ### XML
-XML (Extensible Markup Language) juga merupakan sebuah format yang dapat digunakan untuk menyimpan dan menukarkan data. 
+XML (Extensible Markup Language) juga merupakan sebuah format yang dapat digunakan untuk menyimpan dan menukarkan data. Data di XML direpresentasikan dengan _open and close tag_ dengan _tag_ yang bersifat _case-sensitive_. XML bersifat _self-descriptive_ sehingga mudah untuk dipahami. Pada permulaan file XML, kita bisa menambahkan XML Prolog. Jika kita menambahkan XML Prolog, kita harus menempatkannya di awal.
 
-## Mengapa Diperlukan _Data Delivery_ dalam Pengimplementasian Platform
+### HTML
+HTML (HyperText Markup Language) adalah _markup language_ yang biasanya digunakan untuk menampilkan suatu halaman web. Pada halaman HTML, kita juga bisa membubuhkan data-data yang ingin kita tampilkan. HTML memiliki sintaks yang mirip dengan XML, yakni menggunakan _open and close tag_. Selain itu, halaman yang dibuat menggunakan HTML bisa dibuat menjadi lebih menarik menggunakan CSS dan JavaScript.
+
+## Mengapa Diperlukan _Data Delivery_ dalam Pengimplementasian Platform?
 Dalam membuat platform, terkadang kita perlu memerlukan data. Misalkan kita ingin menampilkan halaman utama akun media sosial. Di sana bisa ditemukan foto profil, nama, dan hal lainnya yang berkaitan dengan pengguna. Untuk menampilkannya, diperlukan data-data pengguna. Di sinilah kita memerlukan _data delivery_. 
 
 ## Cara Implementasi
@@ -45,3 +47,13 @@ Dalam membuat platform, terkadang kita perlu memerlukan data. Misalkan kita ingi
 13.  Membuat `css/style.css` di folder `staticfiles` lalu jalankan `python manage.py collectstatic` agar `ValueError` teratasi
 14.  Ketika _test_ aman, ubah isi `Procfile`. Baris pertama diubah menjadi `release: sh -c 'python manage.py migrate && python manage.py loaddata */fixtures/*.json'`. Hal ini bertujuan agar saat _deployment_ semua data inisiasi langsung dimuat
 15.  Setelah semuanya siap, semua perubahan dan tambahan di-_push_ ke Github dan langsung di-_deploy_ secara otomatis
+
+## Tangkapan Layar Postman
+### XML
+![alt text](https://github.com/farkhans/tugas-2/blob/main/Postman-XML.png "Request XML di Postman")
+
+### HTML
+![alt text](https://github.com/farkhans/tugas-2/blob/main/Postman-HTML.png "Request HTML di Postman")
+
+### JSON
+![alt text](https://github.com/farkhans/tugas-2/blob/main/Postman-JSON.png "Request JSON di Postman")
