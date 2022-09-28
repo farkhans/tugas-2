@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>My ToDoList</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <h1>Username: {{username}}</h1>
+
+    {% if user_todolist %}
+        <table>
+            <tr>
+                <th>Nama Kegiatan</th>
+                <th>Waktu Kegiatan</th>
+                <th>Deskripsi Kegiatan</th>
+            </tr>
+            {% for data in user_todolist %}
+                <tr>
+                    <th>{{data.title}}</th>
+                    <th>{{data.date}}</th>
+                    <th>{{data.description}}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>Anda belum membuat todolist apa pun</h1>
+    {% endif %}
+    
+<button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
+<button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+</div>
+
+{% endblock content %}
