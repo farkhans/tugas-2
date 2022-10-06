@@ -16,6 +16,12 @@ External CSS adalah kode CSS yang berada dalam file tersendiri. Untuk menambahka
 4.  `span`, tag untuk mengubah style dari sebagian teks
 5.  `form`, untuk membuat suatu form
 6.  `table`, membuat tabel
+7.  `title`, memuat judul halaman di tab browser
+8.  `img`, memuat gambar
+9.  `style`, membuat internal CSS
+10.  `script`, menambahkan script agar halaman lebih interaktif
+11.  `p`, membuat paragraf
+12.  `h1, h2, h3, h4, h5, h6`, membuat heading
 
 ## Beberapa CSS Selector
 1.  `element`, memilih elemen tertentu,
@@ -24,4 +30,8 @@ External CSS adalah kode CSS yang berada dalam file tersendiri. Untuk menambahka
 4.  `*`, memilih semua elemen,
 5.  `.class1, .class2, ...`, memilih elemen dengan class `class1`, `class2`, atau class lainnya yang ditambahkan di selector tersebut
 6.  `element .class-name`, memilih elemen tertentu dengan class `class-name`
+7.  `:hover`, style ketika elemen di-hover
+8.  `:active`, style ketika elemen ditekan
 
+## Cara Implementasi
+Pada tugas kali ini, saya hanya bekerja pada file HTML saja. Pada `base.html`, saya menambahkan `link` di `meta` yang merujuk ke Bootstrap. Setelah itu, saya menambahkan class dari Bootstrap untuk elemen yang ingin saya hias dengan Bootstrap. Beberapa elemen juga saya hias dengan internal CSS. Untuk mengecek hasil, saya sudah melakukan `runserver` dan setiap ada pembaruan, saya cukup me-_refresh_ halaman.
