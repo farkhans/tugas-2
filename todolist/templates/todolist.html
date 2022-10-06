@@ -2,35 +2,66 @@
 
 {% block meta %}
 <title>My ToDoList</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .card {
+            width: 60%;
+            margin: 20px auto;
+            transition: 0.5s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.075);
+        }
+        .btn {
+        width: 30%;
+        border: 2px solid white;
+        transition: 0.5s ease-in-out;
+        margin: 0 10px;
+        }
+        .btn:active, .btn:hover {
+            border: 2px solid white;
+        }
+        .btn:hover {
+            transform: scale(1.075);
+        }
+        .btn:hover a{
+            color: white;
+        }
+        a {
+        color: rgb(33,37,41);
+        }
+    </style>
 {% endblock meta %}
-
 {% block content %}
 
-<div class = "login">
+<div class = "todolist">
 
     <h1>Username: {{username}}</h1>
 
     {% if user_todolist %}
-        <table>
-            <tr>
-                <th>Nama Kegiatan</th>
-                <th>Waktu Kegiatan</th>
-                <th>Deskripsi Kegiatan</th>
-            </tr>
-            {% for data in user_todolist %}
-                <tr>
-                    <th>{{data.title}}</th>
-                    <th>{{data.date}}</th>
-                    <th>{{data.description}}</th>
-                </tr>
-            {% endfor %}
-        </table>
+        
+        {% for data in user_todolist %}
+            <div class="card">
+                <div class="card-header">
+                    {{data.title}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{data.date}}</h5>
+                    <p class="card-text">{{data.description}}</p>
+                </div>
+                </div>
+        {% endfor %}
     {% else %}
         <h1>Anda belum membuat todolist apa pun</h1>
     {% endif %}
     
-<button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
-<button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+    <div style="text-align: center;">
+        <button class="btn btn-secondary"><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
+        <button class="btn btn-secondary"><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+    </div>
 </div>
 
 {% endblock content %}
