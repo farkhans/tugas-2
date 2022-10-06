@@ -2,26 +2,61 @@
 
 {% block meta %}
 <title>Create Task</title>
+<style>
+    .create-task {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.0784313725490196);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.4px);
+        -webkit-backdrop-filter: blur(2.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        top: 17.5%;
+    }
+    form {
+        display: inline-block;
+    }
+    td {
+        padding: 10px 5px;
+    }
+    .create-task h6 {
+        margin: 0;
+    }
+    .btn {
+        width: 40%;
+        border: 2px solid white;
+        transition: 0.5s ease-in-out;
+    }
+    .btn:active, .btn:hover {
+        border: 2px solid white;
+    }
+    .btn:hover {
+        transform: scale(1.075);
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
 
-<div>
+<div class="create-task">
 
     <form method="POST" action="">
         {% csrf_token %}
         <table>
             <tr>
-                <td>Nama Kegiatan: </td>
+                <td><h6>Nama Kegiatan: </h6></td>
                 <td><input type="text" name="title" placeholder="" class="form-control"></td>
             </tr>
             <tr>
-                <td>Deskripsi: </td>
+                <td><h6>Deskripsi: </h6></td>
                 <td><input type="text" name="description" placeholder="" class="form-control"></td>
             </tr>
             <tr>
-                <td></td>
-                <td><input class="btn create-task-btn" type="submit" value="Buat Task"></td>
+                <td colspan="2"><input class="btn create-task-btn btn-secondary" type="submit" value="Buat Task"></td>
             </tr>
         </table>
     </form>
