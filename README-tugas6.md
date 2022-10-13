@@ -1,3 +1,33 @@
+Farkhan Syawal Harahap
+
+2106709125
+
+PBP F
+
+***
+
+## Link Heroku
+[nama-proyek.herokuapp.com](https://nama-proyek.herokuapp.com/)
+
+[nama-proyek.herokuapp.com/katalog](https://nama-proyek.herokuapp.com/katalog)
+
+[nama-proyek.herokuapp.com/mywatchlist/html](https://nama-proyek.herokuapp.com/mywatchlist/html)
+
+[nama-proyek.herokuapp.com/mywatchlist/xml](https://nama-proyek.herokuapp.com/mywatchlist/xml)
+
+[nama-proyek.herokuapp.com/mywatchlist/json](https://nama-proyek.herokuapp.com/mywatchlist/json)
+
+[https://nama-proyek.herokuapp.com/todolist](https://nama-proyek.herokuapp.com/todolist)
+
+[https://nama-proyek.herokuapp.com/todolist/register](https://nama-proyek.herokuapp.com/todolist/register)
+
+[https://nama-proyek.herokuapp.com/todolist/login](https://nama-proyek.herokuapp.com/todolist/login)
+
+[https://nama-proyek.herokuapp.com/todolist/logout](https://nama-proyek.herokuapp.com/todolist/logout)
+
+[https://nama-proyek.herokuapp.com/todolist/create-task](https://nama-proyek.herokuapp.com/todolist/create-task)
+
+
 ## Pemrograman Sinkronus dan Asinkronus
 Pada pemrograman sinkronus, program kita dieksekusi secara sekuensial (antrian eksekusi program). Jadi, jika ada suatu pekerjaan yang belum diselesaikan dan ada pekerjaan baru, pekerjaan baru tersebut harus menunggu hingga pekerjaan lama selesai. Sementara itu, pada pemrograman asinkronus program bisa dieksekusi secara paralel. jadi, apabila ada tugas yang belum diselesaikan dan ada tugas baru, tugas baru itu bisa dikerjakan tanpa harus menunggu tugas lama selesai.
 
