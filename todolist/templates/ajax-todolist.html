@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>My ToDoList</title>
+    <style>
+        .todolist {
+            overflow-y: auto;
+            padding-bottom: 30PX;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .card {
+            width: 60%;
+            margin: 20px auto;
+            transition: 0.5s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.075);
+        }
+        .btn {
+        width: 30%;
+        border: 2px solid white;
+        transition: 0.5s ease-in-out;
+        margin: 0 10px;
+        }
+        .btn:active, .btn:hover {
+            border: 2px solid white;
+        }
+        .btn:hover {
+            transform: scale(1.075);
+        }
+        .btn:hover a{
+            color: white;
+        }
+        a {
+        color: rgb(33,37,41);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.get("{% url 'todolist:todolist_ajax' %}", function(data){
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].fields.title)
+                    let res = '<div class="card">'
+                    res += '<div class="card-header">' + data[i].fields.title + '</div>'
+                    res += '<div class="card-body">'
+                    res += '<h5 class="card-title">' + data[i].fields.date + '</h5>'
+                    res += '<p class="card-text">' + data[i].fields.description + '</p>'
+                    res += '</div></div>'
+                    $(".todolist").append(res)
+                }
+            })
+            $("#create-task-btn").click(function() {
+                var taskTitle = $("#task-name").val()
+                var taskDescription = $("#task-desc").val()
+                $.post("{% url 'todolist:create_task_ajax' %}", {title:taskTitle, description:taskDescription}, function(result) {
+                    let res = '<div class="card">'
+                    res += '<div class="card-header">' + result.title + '</div>'
+                    res += '<div class="card-body">'
+                    res += '<h5 class="card-title">' + result.date + '</h5>'
+                    res += '<p class="card-text">' + result.description + '</p>'
+                    res += '</div></div>'
+                    $(".todolist").append(res)
+                })
+            })
+        })
+    </script>
+{% endblock meta %}
+{% block content %}
+
+<div class = "todolist">
+
+    <h1>Username: {{username}}</h1>
+
+    
+    
+</div>
+<div style="text-align: center; padding-bottom: 30px;;">
+    <button class="btn btn-secondary"><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
+    
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Tambah Task Baru
+      </button>
+</div>
+
+<!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Buat Task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="">
+                <table>
+                    <tr>
+                        <td><h6>Nama Kegiatan: </h6></td>
+                        <td><input type="text" name="title" placeholder="" class="form-control" id="task-name"></td>
+                    </tr>
+                    <tr>
+                        <td><h6>Deskripsi: </h6></td>
+                        <td><input type="text" name="description" placeholder="" class="form-control" id="task-desc"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="create-task-btn" data-bs-dismiss="modal">Buat Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}

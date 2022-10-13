@@ -3,12 +3,13 @@ from urllib import response
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from todolist.models import Task
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 import datetime
 
 # Create your views here.
@@ -35,7 +36,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            response = HttpResponseRedirect(reverse("todolist:todolist")) # membuat response
+            response = HttpResponseRedirect(reverse("todolist:todolist_ajax_html")) # membuat response
             response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
             return response
 
@@ -77,3 +78,27 @@ def create_task(request):
 
     context = {}
     return render(request, 'create-task.html', context)
+
+def todolist_ajax(request):
+    data = Task.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
+def todolist_ajax_html(request):
+    name = request.user.username
+    context = {
+        'username': name
+    }
+    return render(request, 'ajax-todolist.html', context)
+
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def create_task_ajax(request):
+    user = request.user
+    if request.method == "POST":
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        result = Task.objects.create(user=user, date=datetime.date.today(), title=title, description=description)
+        print(result)
+        result_dict = {"title":result.title,"date":datetime.date.today(),"description":result.description}
+        return JsonResponse(result_dict)
